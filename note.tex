@@ -1,0 +1,152 @@
+\documentclass{amsart}
+
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+\linespread{1.2}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\Mot}{\mathbf{Mot}}
+\newcommand{\SC}{\mathbf{SC}}
+\newcommand{\MP}{MP}
+\newcommand{\Cat}{\mathbf{Cat}}
+
+\title{Simultaneous cores and Rational Motzkin numbers}
+\author{Paul Johnson}
+
+\begin{document}
+\maketitle
+Let $\lambda$ be a partition, and $\square\in\lambda$ a cell of its diagram.
+The hook length $h(\square)$ is , a partition $\lambda$ is an $a$-core if it has no hook lengths of size $a$.
+
+
+In \cite{johnson}, we used lattice point geometry as a tool for studying partitions that are simultaneously $a$-core, and $b$-core.  There has recently been interest in partitions that are simultaneous core for more than two numbers.  This note is an addendum to \cite{johnson}, showing the techniques developed there are useful in the general case as well.  
+
+As a side benefit, we point out that the lattice point techniques are not just useful for studying cores without hooklengths of another size, but counting the hooklengths of these other sizes.
+
+
+Our starting point is the following conjecture of Amdeberhan:
+\begin{conjecture}[Amdeberhan] \label{conj:Amdeberhan}
+Suppose $s,d$ are relatively prime.
+Then the number of $(s,s+d,s+2d)$-core partitions is given by:
+$$\sum_k \frac{1}{s+d}\binom{s+d}{k,d+k,s-2k}$$
+\end{conjecture}
+Our first result proves a refined version of this conjecture, which provides an interpretation of each term appearing in the sum:
+
+\begin{theorem} \label{thm:cores}
+Let $s,d$ be relatively prime.  Then the number of $(s,s+d,s+2d)$ cores with exactly $k$ hooklengths of size $d$ is
+$$\sum_k \frac{1}{s+d}\binom{s+d}{k,d+k,s-2k}$$
+\end{theorem}
+
+As a byproduct of this result, we noticed that the lattice point methods of \cite{johnson} allow us not only to consider $a$-cores \emph{without} any hooklengths of a given size, but more generally to \emph{count} the number of hook lengths of a given size in any $a$-core.  
+
+We do not develop and explore all the consequences of this observation, but summarize it as follows:
+
+\begin{theorem}
+Let $n_k(\lamda)$ denote the number of hooklengths of size $k$ of a partition.
+Within the lattice of $a$-cores, $n_k(\lambda)$ is an explicit piecewise linear function.
+\end{theorem}
+
+We also observe that this lets us rephrase the \emph{skew length} function introuduced by \cite{ } and studied in \cite{ } is expressable in terms of the $n_k$:
+$$s\ell_{a,b}=\sum_{k=1}^{a-1} (n_k-n_{b+k})$$
+
+\subsection{} Our second result provides another combinatorial object counted by these numbers.
+
+The starting point for studying simultaneous core partitions is Anderson's result that the number of $(a,b)$ cores is the \emph{rational Catalan number}
+$$\Cat_{a,b}=\frac{1}{a+b}\binom{a+b}{a}$$
+Anderson gave a bijection between simultaneous core partitions and an object already known to be counted by rational Catalan numbers, \emph{rational Dyck paths}:
+\begin{definition}
+Let $a,b$ be relatively prime.  A \emph{rational Dyck path} is a path from $(0,a)$ to $(b,0)$ that stays beneath the line connecting those two points consiting only of steps of size $(0,-1)$ and $(1,0)$.
+\end{definition}
+
+Amdeberhan and Leven \cite{AL} introduce the notion of a generalized Dyck path, and showed that the number of $(s,s+1,\dots, s+t)$-cores are counted by these.  
+
+  In particular, their 2,  are already known as Motzkin paths.  We generalize the notion of Motzkin path to a \emph{rational Motzkin path}, and show that these have the same count as $(s,s+d,s+2d)$-cores.
+
+\begin{definition} Let $a+b$ be even, and $(b-a)/2$ be relatively prime to $a$.
+A  \emph{rational Motzkin path} from $(a,0)$ to $(0,b)$ is a path staying below the line that connects them, of steps of the form $S=(0,-2), D=(1,-1)$ or $E=(0,2)$ (for \emph{South}, \emph{Diagonal}, and \emph{East}).  
+
+We also call these $(a,b)$-Motzkin paths, and we call the number of such paths the \emph{rational Motzkin number} $\Mot_{a,b}$.
+\end{definition}
+
+\begin{theorem} \label{thm:paths}
+Let $a+b$ be even, and $(b-a)/2$ relatively prime to $a$.  The number of $(a,b)$-Motzkin paths with exactly $k$ down steps is
+$$\frac{1}{s+d}\binom{s+d}{k,d+k,s-2k}$$
+\end{theorem}
+
+\begin{corollary}
+The number of $(s,s+d,s+2d)$-cores is equal to the number of $(s,s+2d)$-Motzkin paths.
+\end{corollary}
+
+
+
+\section{Proof of Theorem \ref{thm:cores}}
+
+The methods of \cite{johnson} are easily extended to give the following:
+\begin{lemma} \label{lem-lattice}
+The number of $(s,s+d,s+2d)$-cores is $1/s$ times the number of $s$-tuples of nonnegative integers $z_i$ that sum to $s+d$, and no two cyclicly consecutive $z_i$ are equal to 0.
+
+Furthermore, the number of cells with hooklength $d$ in such a partition is equal to the number of $z_i$ are that are equal to 0.
+\end{lemma}
+\begin{proof}
+The output of \cite{johnson} gives that the number of $(s,s+d,s+2d)$-cores is $1/s$ times the number of $s$-tuples $(z_1,\dots,z_s)$ of non-negative integers, such that $\sum_{i=1}^s z_i=s+d$ and $z_i+z_{i+1}\geq 1$ for all $i$, where the indicies are taken mod $s$ -- i.e., we also require $z_s+z_1\geq 1$.
+
+Without the last condition on $z_i+z_{i+1}$, the solutions to this are lattice points in the $s+d$ scaled standard simplex, and $1/s$ of them count the $(s,s+d)$ simultaneous cores, as explained at length in \cite{Johnson}.   This last condition is easily seen to be the one that implies that it is also an $s+2d$ core -- first, write this condition in the $x$ coordinates and then translate into the $z$ coordinates.
+
+For each $i$ with $z_i=0$, we see that there is a pair of runners on the abacus presentation with the distance between the highest filled energy level on one runner and the lowest vacant energy level on the other is exactly $d$, which corresponds to a cell with hooklength $d$.    
+\end{proof}
+
+
+
+Theorem \ref{thm-cores} follows Lemma \ref{lem-lattice} and
+\begin{lemma}
+The number of $s$ tuples of non-negative integers summing to $s+d$ with exactly $k$ of the integers equal to zero, and none of these zeros being cyclically adjacent is 
+$$\frac{s}{s-2k}\binom{s-k-1}{k}\binom{d+s-1}{s-k-1}$$
+\end{lemma}
+
+\begin{proof}
+It is standard that the second binomial coefficient is the number of ways that $s-k$ positive integers can sum to $d+s$.  We prove that the other factors count the number of ways to choose $k$ of the $z_i$ to be 0, subject to the restriction that none of the zeroes are cyclically adjacent.
+
+There are $s$ ways to choose one of the entries to be zero.  We remove this entry, ``cutting'' the cycle of entries and arranging the remaining $s-1$ entries linearly, we need to choose $k-1$ of them to be zero, with the zero entries not allowed to be adjacent or the first or last entry.  Thus, there will be $k$ nonempty strings of nonzero entries.  Subtracting 1 from the length of each,  there are $\binom{s-k-1}{k-1}$ ways to choose the $0$s.  Our initial choice of an entry to be 0 could be any one of the $k$ 0 entries, and so we are counting each arrangement $k$ times, and there are
+$$\frac{s}{k}\binom{s-k-1}{k-1}$$ ways to choose the entries that are zero.
+\end{proof}
+
+\begin{definition} 
+The \emph{Motzkin triangle} $M(n,k)$ is defined to be the number of paths from $(0,0)$ to $(n, n-k)$, consisting of $n$ steps in the directions $\{(1,1), (1,0), (1,-1)\}$ that stay above $x$-axis.
+
+Alternatively, we have $M(n,0)=1, M(n+1,k)=M(n,k)+M(n,k-1)+M(n,k-2)$.
+\end{definition}
+
+\begin{theorem}[Ambederhan, , Zeilberg]
+$$\sum_k \binom{s+d-1}{2k+d-1}\binom{2k+d}{k}\frac{1}{2k+d}=\frac{1}{d} M(s+d-1,s)$$
+
+\end{theorem}
+
+\section{Proof of Theorem \ref{thm:paths}}
+The proof follows the usual one that rational Catalan numbers count rational Dyck paths, with the number theory at the end being slightly more complicated.
+
+
+A $(s,s+2d)$-Motzkin path travels a distance of $2s+2d$ in the taxi-cab metric, out of steps that are each of length $2$, and thus consists of $s+d$ total steps.  If $k$ of them are down, then $s-2k$ of them must be diagonal, and hence the remaining $d+k$ of them must be to the right.  
+
+Thus, the multinomial coefficient counts the number of Motzkin paths if we ignore the condition that we remain below the diagonal.  There is an action $\Z/(s+d)/Z$ on such paths by cyclicly permuting the steps.  We show that each orbit under this action contains exactly one path that stays below the diagonal.
+
+Label each lattice point $(i,j)$ with a \emph{height} $H(i,j)=si+(s+2d)j$.  The lattice points $(0,s)$ and $(s+2d,0)$ each have height $s^2+2ds$, and so the lattice points below the line connecting them are exactly those with height less than this.
+
+We claim any path between these two points has a unique point of highest height, unless it's a rational Dyck path, in which case the start and end point each have the same height.  This proves the result -- simply cyclic rotate the highest point on the path to be the starting (and ending) point.
+
+If a path doesn't have a unique highest point, then the subpath connecting two different points of maximum height changes the height by $0$.  Suppose this subpath consists of $\sigma$ steps $S$, $\delta$ steps $D$, and $\epsilon$ steps $E$.We show that $\sigma+\delta+\epsilon\geq s+d$, which shows that in this case the maximum height occurs at the start and finish, as desired.  
+
+  Since each $S$ decreases the height by $2s+4d$, each $D$ decreases the height by $2d$, and each $E$ increases the height by $2s$, dividing by two gives $$(s+2d)\sigma+d\delta=s\epsilon$$
+Since $s$ and $d$ are relatively prime, for the left hand side to be divisible by $s$, $2\sigma+\delta$ must be disivible by $s$.  Thus, the minimum nonzero solution has $2\sigma+\delta=s$, making the right hand side equal to $s(\sigma+d)$, and so $\epsilon=\sigma+d$.
+
+Thus, $\sigma+\delta+\epsilon=2\sigma+\delta+d=s+d$, as desired.
+
+
+
+\end{document}
